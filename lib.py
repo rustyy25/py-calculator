@@ -1,5 +1,5 @@
 # FONTFACE FAMILY
-font = "Tahoma"
+fontFamily = "Tahoma"
 
 # MATHEMATIC FUNCTIONS
 def add(x, y):
@@ -15,12 +15,7 @@ def divide(x, y):
     return round(x / y, 2)
 
 def exponent(x, y):
-    result = str(x ** y)
-
-    if len(result) > 3:
-        return f"{result[:3]}..."
-
-    return result
+    return x ** y
 
 def module(x, y):
-    return x & y
+    return x % y
