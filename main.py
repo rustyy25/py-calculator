@@ -8,8 +8,8 @@ root.configure(bg="#f0f0f5")
 
 def calculate():
     try:
-        x = int(entry_x.get())
-        y = int(entry_y.get())
+        x = float(entry_x.get())
+        y = float(entry_y.get())
         choice = int(option_var.get())
         
         if choice == 1:
