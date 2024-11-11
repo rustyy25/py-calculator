@@ -15,7 +15,7 @@ def divide(x, y):
     return round(x / y, 2)
 
 def exponent(x, y):
-    return x ** y
+    return round(x ** y, 2)
 
 def module(x, y):
     return x % y

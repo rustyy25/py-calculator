@@ -1,4 +1,4 @@
-import tkinter as tk
+import lib, tkinter as tk
 from tkinter import messagebox
 from decimal import Decimal, getcontext
 
@@ -15,25 +15,26 @@ def calculate():
         choice = int(option_var.get())
         
         if choice == 1:
-            result = x + y
+            result = lib.add(x, y)
         elif choice == 2:
-            result = x - y
+            result = lib.subtract(x, y)
         elif choice == 3:
-            result = x * y
+            result = lib.multiply(x, y)
         elif choice == 4:
             if y == 0:
                 raise ZeroDivisionError("Can't divide by 0")
             else:
-                result = x / y
+                result = lib.divide(x, y)
         elif choice == 5:
             if y > 100:
                 raise OverflowError("Exponent is too large.")
-            result = x ** y
+            else:
+                result = lib.exponent(x, y)
         elif choice == 6:
             if y == 0:
                 raise ZeroDivisionError("Can't divide by 0")
             else:
-                result = x % y
+                result = lib.module(x, y)
         
         messagebox.showinfo("Result", f"The result is: {result}")
     except ValueError:
@@ -48,19 +49,19 @@ def calculate():
 input_frame = tk.Frame(root, bg="#e0e0eb", bd=5, relief="ridge")
 input_frame.pack(pady=15, padx=10)
 
-tk.Label(input_frame, text="Enter first number:", font=("Arial", 10), bg="#e0e0eb").grid(row=0, column=0, padx=10, pady=5)
-entry_x = tk.Entry(input_frame, font=("Arial", 12), width=10, justify="center")
+tk.Label(input_frame, text="Enter first number:", font=(lib.fontFamily, 10), bg="#e0e0eb").grid(row=0, column=0, padx=10, pady=5)
+entry_x = tk.Entry(input_frame, font=(lib.fontFamily, 12), width=10, justify="center")
 entry_x.grid(row=0, column=1, padx=10, pady=5)
 
-tk.Label(input_frame, text="Enter second number:", font=("Arial", 10), bg="#e0e0eb").grid(row=1, column=0, padx=10, pady=5)
-entry_y = tk.Entry(input_frame, font=("Arial", 12), width=10, justify="center")
+tk.Label(input_frame, text="Enter second number:", font=(lib.fontFamily, 10), bg="#e0e0eb").grid(row=1, column=0, padx=10, pady=5)
+entry_y = tk.Entry(input_frame, font=(lib.fontFamily, 12), width=10, justify="center")
 entry_y.grid(row=1, column=1, padx=10, pady=5)
 
 option_var = tk.StringVar(value="1")
 operation_frame = tk.Frame(root, bg="#f0f0f5")
 operation_frame.pack(pady=10)
 
-tk.Label(operation_frame, text="Choose an operation:", font=("Arial", 14, "bold"), bg="#f0f0f5").pack(anchor="w", padx=20)
+tk.Label(operation_frame, text="Choose an operation:", font=(lib.fontFamily, 14, "bold"), bg="#f0f0f5").pack(anchor="w", padx=20)
 tk.Label(operation_frame, text="", bg="#f0f0f5").pack()
 
 operations = [
@@ -73,9 +74,9 @@ operations = [
 ]
 
 for text, value in operations:
-    tk.Radiobutton(operation_frame, text=text, variable=option_var, value=value, bg="#f0f0f5", font=("Arial", 10), anchor="w").pack(anchor="w", padx=40)
+    tk.Radiobutton(operation_frame, text=text, variable=option_var, value=value, bg="#f0f0f5", font=(lib.fontFamily, 10), anchor="w").pack(anchor="w", padx=40)
 
-calculate_button = tk.Button(root, text="Calculate", command=calculate, font=("Arial", 12), bg="#4CAF50", fg="white", padx=15, pady=10)
+calculate_button = tk.Button(root, text="Calculate", command=calculate, font=(lib.fontFamily, 12), bg="#4CAF50", fg="white", padx=15, pady=10)
 calculate_button.pack(pady=(5,10))
 
 root.mainloop()
